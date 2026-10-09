@@ -1,14 +1,5 @@
-#GFG - Max Path Sum Between Two Leaves
-
-'''
-# Node Class:
-class Node:
-    def _init_(self,val):
-        self.data = val
-        self.left = None
-        self.right = None
-        '''
-class Solution:        
+class Solution:  
+    #GFG - Max Path Sum Between Two Leaves      
     def maxPathSum(self, root):
         # code here
         def maxleafsum(root):
@@ -53,51 +44,7 @@ class Solution:
 
         return ans
 
-#LC- 301. Remove Invalid Parentheses
+    #Minimum Operations to Reach n
 
-class Solution:
-    def removeInvalidParentheses(self, s: str) -> List[str]:
-        ans=[]
-        
-        def get_min(s,n):
-            stk=[]
-            i=0
-            while i<n:
-                if s[i] not in '()':
-                    i += 1
-                    continue
-                if stk==[] or s[i]=='(':
-                    stk.append(s[i])
-                else:
-                    if stk[-1]=='(':
-                        stk.pop()
-                    else:
-                        stk.append(s[i])
-                i += 1
-            return len(stk)
-        
-        def inValid(s,rem,n,d):
-            if rem==0:
-                m=get_min(s,n)
-                if m==0 :
-                    ans.append(s)
-
-                return
-            for i in range(n):
-                if s[i] not in '()':
-                    continue
-                lft=s[:i]
-                ryt=s[i+1:]
-                if d.get(lft+ryt)==None:
-                    inValid(lft+ryt,rem-1,n-1,d)
-                    d[lft+ryt]=1
-            return
-        
-        n=len(s)
-        minrem=get_min(s,n)
-        inValid(s,minrem,n,{})
-        return ans
-                
-            
-class Solution:
-    
+    def minOperation(self, n):
+        return n.bit_length() + n.bit_count() - 1
