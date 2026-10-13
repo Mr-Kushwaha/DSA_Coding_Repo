@@ -76,4 +76,17 @@ class Solution:
         minrem=get_min(s,n)
         inValid(s,minrem,n,{})
         return ans
+
+
+    #3727. Maximum Alternating Sum of Squares
+    def maxAlternatingSum(self, nums: List[int]) -> int:
+        n=len(nums)
+        for i in range(n):
+            nums[i] *= nums[i]
+        nums.sort()
+        s=sum(nums)
+        sub=0
+        for i in range(n//2):
+            sub += nums[i]
+        return s-2*sub
                 

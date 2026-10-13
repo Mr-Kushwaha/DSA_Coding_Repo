@@ -60,3 +60,12 @@ class Solution:
                 m,n=n,m
             return dfs(m,n%m)+n//m
         return dfs()
+
+    #Adding Ones
+    def update(self, n: int, updates: list[int]) -> list[int]:
+        ans=[0 for i in range(n)]
+        for i in updates:
+            ans[i-1] += 1
+        for i in range(1,n):
+            ans[i] += ans[i-1]
+        return ans
