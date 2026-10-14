@@ -69,3 +69,16 @@ class Solution:
         for i in range(1,n):
             ans[i] += ans[i-1]
         return ans
+
+    #Roll Characters of String
+    def findRollOut(self, s, roll):
+        n = len(s)
+        changes = [0] * (n + 1)
+        for i in roll:
+            changes[i] -= 1
+        arr = []
+        r = len(roll)
+        for c, d in zip(s, changes):
+            r += d
+            arr.append(chr(ord("a") + (ord(c) - ord("a") + r) % 26))
+        return "".join(arr)

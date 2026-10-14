@@ -89,4 +89,18 @@ class Solution:
         for i in range(n//2):
             sub += nums[i]
         return s-2*sub
+
+    #3723. Maximize Sum of Squares of Digits
+    def maxSumOfSquares(self, num: int, sum: int) -> str:
+        if 9*num<sum:
+            return ''
+        quotient = sum//9
+        remainder = sum % 9
+        if remainder:
+            ans='9'*quotient + str(remainder)
+            ans += '0'*(num-(quotient+1))
+        else:
+            ans='9'*quotient
+            ans += '0'*(num-quotient)
+        return ans
                 
