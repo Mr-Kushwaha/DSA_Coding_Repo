@@ -104,3 +104,17 @@ class Solution:
             ans += '0'*(num-quotient)
         return ans
                 
+    
+    #2913. Subarrays Distinct Element Sum of Squares I
+    def sumCounts(self, nums: List[int]) -> int:
+        n=len(nums)
+        ans=0
+        for i in range(n):
+            d={}
+            v=0
+            for j in range(i,n):
+                if d.get(nums[j],-1)==-1:
+                    v += 1
+                d[nums[j]]=1
+                ans += v*v
+        return ans
