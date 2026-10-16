@@ -82,3 +82,23 @@ class Solution:
             r += d
             arr.append(chr(ord("a") + (ord(c) - ord("a") + r) % 26))
         return "".join(arr)
+
+    #Maximum Without 3 Consecutive Set Bits
+    def maxValue(self, n: int) -> int:
+        def fun(n,i):
+            if (1<<i)>n:
+                return 0,0
+            ans,c=fun(n,i+1)
+            if n&(1<<i):
+                c += 1
+            else:
+                c=0
+            if c==3:
+                c=0
+            else:
+                ans += ((1<<i)&n)
+            return ans,c
+            
+        res=fun(n,0)
+        return res[0]
+            
