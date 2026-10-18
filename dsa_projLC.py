@@ -118,3 +118,33 @@ class Solution:
                 d[nums[j]]=1
                 ans += v*v
         return ans
+
+
+     #1569. Number of Ways to Reorder Array to Get Same BST
+    def numOfWays(self, nums: List[int]) -> int:
+        self.m=10**9+7
+        n=len(nums)
+        pascal=[[1 for j in range(i+1)]for i in range(n+1)]
+        for i in range(2,n):
+            for j in range(1,i):
+                pascal[i][j]=(pascal[i-1][j]+pascal[i-1][j-1])%self.m
+        
+
+        def dfs(a,n):
+            if n<=2:
+                return 1
+            a1,a2=[],[]
+            l1,l2=0,0
+            for i in a[1:]:
+                if i>a[0]:
+                    a1.append(i)
+                    l1 += 1 
+                else:
+                    a2.append(i)
+                    l2 += 1 
+            val=pascal[n-1][l1]
+            return ((val*dfs(a1,l1)%self.m)*dfs(a2,l2))%self.m
+
+        ans=dfs(nums,n)
+        return ans%self.m-1
+
