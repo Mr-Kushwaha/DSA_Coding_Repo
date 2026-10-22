@@ -148,3 +148,37 @@ class Solution:
         ans=dfs(nums,n)
         return ans%self.m-1
 
+
+    #3942. Minimum Operations to Sort a Permutation
+    def minOperations(self, nums: List[int]) -> int:
+        ind0=-1
+        n=len(nums)
+        for i in range(n):
+            if nums[i]==0:
+                ind0=i
+                break
+        prev,next=(n+(ind0-1))%n,(ind0+1)%n
+        if nums[prev]==1:
+            f=1
+            val=1
+        else:
+            f=-1
+            val=n-1
+        for i in range(prev,-1,-1):
+            if nums[i]!=val:
+                return -1
+            val += f
+            val=(n+val)%n
+        for i in range(n-1,next-1,-1):
+            if nums[i]!=val:
+                return -1
+            val += f
+            val=(n+val)%n
+        if nums[0]-nums[n-1]==-n+1:
+            return 0
+        elif nums[0]-nums[n-1]==n-1:
+            return 1
+        if f==1:
+            return min(ind0+2,n-ind0)
+        return min(ind0,n-ind0+2)
+
