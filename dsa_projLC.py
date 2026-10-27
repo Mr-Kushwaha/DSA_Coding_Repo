@@ -209,3 +209,17 @@ class Solution:
                     if v%k==0:
                         count += 1
         return count
+
+
+    #3963. Create Grid With Exactly One Path
+    def createGrid(self, m: int, n: int) -> list[str]:
+        a=[]
+        for i in range(m):
+            l=''
+            for j in range(n):
+                if i==0 or j==n-1:
+                    l += '.'
+                else:
+                    l += '#'
+            a.append(l)
+        return a
