@@ -182,3 +182,30 @@ class Solution:
             return min(ind0+2,n-ind0)
         return min(ind0,n-ind0+2)
 
+
+
+    #3619. Count Islands With Total Value Divisible by K
+    def countIslands(self, grid: List[List[int]], k: int) -> int:
+        def dfs(a,i,j,r,c):
+            v=a[i][j]
+            a[i][j]=0
+            if (i+1)<r and a[i+1][j]:
+                v += dfs(a,i+1,j,r,c)
+            if (i-1)>=0 and a[i-1][j]:
+                v += dfs(a,i-1,j,r,c)
+            if (j+1)<c and a[i][j+1]:
+                v += dfs(a,i,j+1,r,c)
+            if (j-1)>=0 and a[i][j-1]:
+                v += dfs(a,i,j-1,r,c)
+            return v
+                
+        r=len(grid)
+        c=len(grid[0])
+        count = 0
+        for i in range(r):
+            for j in range(c):
+                if grid[i][j]:
+                    v = dfs(grid,i,j,r,c)
+                    if v%k==0:
+                        count += 1
+        return count
