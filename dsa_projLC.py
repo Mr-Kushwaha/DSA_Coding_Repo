@@ -223,3 +223,29 @@ class Solution:
                     l += '#'
             a.append(l)
         return a
+
+    #3882. Minimum XOR Path in a Grid
+    def minCost(self, grid: list[list[int]]) -> int:
+        n,m=len(grid),len(grid[0])
+        dp=[[[False for k in range(1024)] for i in range(m)] for j in range(n)]
+        dp[0][0][grid[0][0]]=True
+        for i in range(1,m):
+            for k in range(1024):
+                if dp[0][i-1][k]:
+                    dp[0][i][k^grid[0][i]]=True
+        for i in range(1,n):
+            for k in range(1024):
+                if dp[i-1][0][k]:
+                    dp[i][0][k^grid[i][0]]=True
+        for i in range(1,n):
+            for j in range(1,m):
+                for k in range(1024):
+                    if dp[i-1][j][k]:
+                        dp[i][j][k^grid[i][j]]=True
+                    if dp[i][j-1][k]:
+                        dp[i][j][k^grid[i][j]]=True
+        mini=1024
+        for i in range(1023,-1,-1):
+            if dp[n-1][m-1][i]:
+                mini=i
+        return minis
