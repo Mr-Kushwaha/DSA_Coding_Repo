@@ -249,3 +249,17 @@ class Solution:
             if dp[n-1][m-1][i]:
                 mini=i
         return minis
+
+
+    #462. Minimum Moves to Equal Array Elements II
+    def minMoves2(self, nums: list[int]) -> int:
+        n=len(nums)
+        nums.sort()
+        if n<=2:
+            return -nums[0]+nums[-1]
+        
+        a1,a2=0,0
+        for i in nums:
+            a1 += abs(i-nums[n//2])
+            a2 += abs(i-nums[n//2-1])
+        return min(a1,a2)
