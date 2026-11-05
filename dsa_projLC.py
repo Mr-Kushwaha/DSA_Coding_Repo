@@ -263,3 +263,12 @@ class Solution:
             a1 += abs(i-nums[n//2])
             a2 += abs(i-nums[n//2-1])
         return min(a1,a2)
+
+
+    #3736. Minimum Moves to Equal Array Elements III
+    def minMoves(self, nums: List[int]) -> int:
+        ans=0
+        v=max(nums)
+        for i in nums:
+            ans += v-i
+        return ans
