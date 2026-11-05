@@ -272,3 +272,27 @@ class Solution:
         for i in nums:
             ans += v-i
         return ans
+
+
+    #1385. Find the Distance Value Between Two Arrays
+    def findTheDistanceValue(self, arr1: List[int], arr2: List[int], d: int) -> int:
+        def binary(a,n,t):
+            i,j=0,n-1
+            while i<=j:
+                mid=(i+j)//2
+                if a[mid]>t:
+                    j=mid-1
+                elif a[mid]==t:
+                    return mid
+                else:
+                    i=mid+1
+            return i%n
+
+        n=len(arr2)
+        arr2.sort()
+        res=0
+        for i in arr1:
+            ind=binary(arr2,n,i-d)
+            if (arr2[ind]>(i+d)) or (arr2[ind]<(i-d)):
+                res += 1
+        return res

@@ -257,3 +257,17 @@ class Solution:
                 e_i += 1
             answers[q_i] = count
         return answers
+
+
+     #Minimum Days
+    def getMinimumDays(self, s: str, p: list[int]) -> int:
+        s = list(s)
+        day = 0
+        n=len(s)
+        for i in range(n-1):
+
+            if s[i] != "?" and s[i] == s[i+1]:
+                while s[i] == s[i+1]:
+                    s[p[day]] = "?"
+                    day += 1
+        return day
