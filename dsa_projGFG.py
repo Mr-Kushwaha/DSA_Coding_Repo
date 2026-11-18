@@ -271,3 +271,16 @@ class Solution:
                     s[p[day]] = "?"
                     day += 1
         return day
+
+
+    #K-th Missing in Natural Numbers
+    def findKthSmall(self, arr, k):
+        i = 0
+        start = 0
+        arr.sort()
+        n=len(arr)
+        while i < n and start + k >= arr[i]:
+            k -= (arr[i] - start - 1)
+            start = arr[i]
+            i += 1
+        return start + k

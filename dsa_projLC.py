@@ -296,3 +296,28 @@ class Solution:
             if (arr2[ind]>(i+d)) or (arr2[ind]<(i-d)):
                 res += 1
         return res
+
+    
+    #2243. Calculate Digit Sum of a String
+    def digitSum(self, s: str, k: int) -> str:
+        def fun(s,k):
+            c=0
+            ans=0
+            v=0
+            curr=''
+            for i in s:
+                c += 1
+                v += int(i)
+                if c==k:
+                    curr += str(v)
+                    v=0
+                    c=0
+            if c:
+                curr += str(v)
+            return curr
+
+        n=len(s)
+        while n>k:
+            s=fun(s,k)
+            n=len(s)
+        return s
