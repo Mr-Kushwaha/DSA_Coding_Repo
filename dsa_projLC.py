@@ -321,3 +321,27 @@ class Solution:
             s=fun(s,k)
             n=len(s)
         return s
+
+
+    #2914. Minimum Number of Changes to Make Binary String Beautiful
+    def minChanges(self, s: str) -> int:
+        ans=0
+        v=1
+        n=len(s)
+        f=0
+        for i in range(1,n):
+            if s[i]==s[i-1]:
+                v += 1
+            else:
+                v += f
+                if v&1:
+                    f=1
+                    ans += 1
+                else:
+                    f=0
+                v=1
+        v += f
+        if v&1:
+            ans += 1
+        return ans
+
