@@ -368,3 +368,25 @@ class Solution:
             ans += 1
         return ans
 
+
+
+class ProductOfNumbers:
+    #1352. Product of the Last K Numbers
+    def __init__(self):
+        self.arr=[1]
+        self.len=0
+
+    def add(self, num: int) -> None:
+        if num==0:
+            self.arr=[1]
+            self.len=0
+        else:
+            self.arr.append(self.arr[-1]*num)
+            self.len += 1
+
+    def getProduct(self, k: int) -> int:
+        if self.len<k:
+            return 0
+        else:
+            #print(self.arr)
+            return self.arr[-1]//self.arr[self.len-k]
