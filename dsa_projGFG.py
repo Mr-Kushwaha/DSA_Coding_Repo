@@ -284,3 +284,30 @@ class Solution:
             start = arr[i]
             i += 1
         return start + k
+
+
+    #Character at Position in Infinite String
+    def posInfinite(self, s: str, pos: int) -> str:
+        if pos <= len(s):
+            return s[pos - 1]
+
+        lengths = [len(s)]
+        step = 1
+
+        while lengths[-1] < pos:
+            lengths.append(2 * lengths[-1] + step)
+            step += 1
+
+        for i in range(len(lengths) - 1, 0, -1):
+            prev_len = lengths[i - 1]
+
+            if pos <= prev_len:
+                continue
+
+            elif pos <= prev_len + i:
+                return '$'
+
+            else:
+                pos = 2 * prev_len + i + 1 - pos
+
+        return s[pos - 1]
