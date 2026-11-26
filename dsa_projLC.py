@@ -390,3 +390,15 @@ class ProductOfNumbers:
         else:
             #print(self.arr)
             return self.arr[-1]//self.arr[self.len-k]
+
+
+    
+    #3360. Stone Removal Game
+    def canAliceWin(self, n: int) -> bool:
+        x=10
+        f=False
+        while n>=x:
+            n -= x
+            x -= 1
+            f = f^True
+        return f

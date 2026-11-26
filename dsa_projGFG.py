@@ -311,3 +311,16 @@ class Solution:
                 pos = 2 * prev_len + i + 1 - pos
 
         return s[pos - 1]
+
+
+    #Range Vowel Count Queries
+    def countVowels(self, s: str, queries: list[list[int]]) -> list[int]:
+        n = len(s)
+        vowels = {'a', 'e', 'i', 'o', 'u'}
+
+        pref = [0]*(n+1)
+        for i in range(n):
+            pref[i+1] = pref[i] + (s[i] in vowels)
+
+        res = [pref[r+1]-pref[l] for l, r in queries]
+        return res
